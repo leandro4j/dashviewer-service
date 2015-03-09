@@ -8,12 +8,14 @@ import org.apache.cordova.CordovaWebView;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
+import android.util.Log;
 import android.webkit.CookieManager;
 
 public class DashViewerServicePlugin extends CordovaPlugin {
 
     @Override
     public void onNewIntent(Intent intent) {
+    	Log.i("WebIntent", "Passando no onNewIntent force Extra = " + intent.toString());
     	//Forçamos atualização dos parâmetros da Itent (Intent Extra)
     	((CordovaActivity)this.cordova.getActivity()).setIntent(intent);
     }
