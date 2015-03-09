@@ -149,7 +149,10 @@ public class DashViewerService extends BackgroundService {
 		}
 
 		notification.defaults |= Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
-		notification.flags |= Notification.FLAG_AUTO_CANCEL;
+		notification.flags |= Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL;
+		notification.ledARGB = 0xff00ff00;
+		notification.ledOnMS = 300;
+		notification.ledOffMS = 1000;
 
 		return notification;
 	}
