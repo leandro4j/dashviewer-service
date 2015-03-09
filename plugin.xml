@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        id="br.com.sankhya.dashviewer"
+        version="1.0.0">
+
+    <name>DashViewer Service Plugin</name>
+
+    <description>
+        DashViewer Service é o plugin de notificação push para Android. Embarcado a ele temos o plugin https://github.com/Red-Folder/bgs-core que permite a criação de serviços no Android.
+    </description>
+
+    <license>Apache 2.0</license>
+
+    <engines>
+        <engine name="cordova" version=">=3.0.0"/>
+    </engines>
+
+    <!-- Android -->
+    <platform name="android">
+
+		<!-- https://github.com/Red-Folder/bgs-core/issues/18 (Tivemos q embarcar o BackgroundServicePlugin por causa de um erro no Android Lollipop 5) -->
+
+		<js-module src="www/dashviewerService.js" name="DashViewerService">
+			<clobbers target="DashViewerService" />
+		</js-module>
+		
+		<js-module src="www/backgroundService.js" name="BackgroundService">
+		</js-module>
+
+        <config-file target="AndroidManifest.xml" parent="/manifest/application">
+            <service android:name="br.com.sankhya.dashviewer.DashViewerService">
+                <intent-filter>         
+                    <action android:name="br.com.sankhya.dashviewer.DashViewerService"/> 
+                </intent-filter>     
+            </service>
+            <receiver android:name="com.red_folder.phonegap.plugin.backgroundservice.BootReceiver">
+                <intent-filter>     
+                    <action android:name="android.intent.action.BOOT_COMPLETED"></action>   
+                </intent-filter> 
+            </receiver>
+        </config-file>
+        
+        <config-file target="AndroidManifest.xml" parent="/manifest">
+            <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+        </config-file>
+        
+        <config-file target="res/xml/config.xml" parent="/*">
+            <feature name="DashViewerServicePlugin" >
+                <param name="android-package" value="br.com.sankhya.dashviewer.DashViewerServicePlugin"/>
+                <param name="onload" value="true" />
+            </feature>
+            <feature name="BackgroundServicePlugin">
+                <param name="android-package" value="com.red_folder.phonegap.plugin.backgroundservice.BackgroundServicePlugin"/>
+            </feature>
+        </config-file>
+        
+        <source-file src="src/android/DashViewerService.java" target-dir="src/br/com/sankhya/dashviewer" />
+        <source-file src="src/android/DashViewerServicePlugin.java" target-dir="src/br/com/sankhya/dashviewer" />
+        <source-file src="src/android/XMLParser.java" target-dir="src/br/com/sankhya/dashviewer" />
+        <source-file src="src/android/NotificationService.java" target-dir="src/br/com/sankhya/dashviewer" />
+        
+        <source-file src="src/android/BackgroundServicePlugin.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/BackgroundService.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/BackgroundServicePluginLogic.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/BootReceiver.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="src/android/PropertyHelper.java" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+		
+        <source-file src="aidl/android/BackgroundServiceApi.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        <source-file src="aidl/android/BackgroundServiceListener.aidl" target-dir="src/com/red_folder/phonegap/plugin/backgroundservice" />
+        
+    </platform>
+	
+</plugin>
