@@ -30,11 +30,11 @@ public class DashViewerService extends BackgroundService {
 	protected JSONObject doWork() {
 		JSONObject result = new JSONObject();
 
+		if(lastExecution == 0){
+			lastExecution = System.currentTimeMillis();
+		}
+		
 		try {
-			if(lastExecution == 0){
-				lastExecution = System.currentTimeMillis();
-			}
-			
 			int notificationCounter = 0;
 			
 			if (serverUrl != null) {
@@ -57,9 +57,9 @@ public class DashViewerService extends BackgroundService {
 			}
 
 			result.put("NotificationCounter", notificationCounter);
-			
-			lastExecution = System.currentTimeMillis();
 		} catch (JSONException e) {
+		} finally{
+			lastExecution = System.currentTimeMillis();
 		}
 
 		return result;
