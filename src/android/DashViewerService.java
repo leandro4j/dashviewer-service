@@ -137,6 +137,8 @@ public class DashViewerService extends BackgroundService {
 		
 		builder.setSmallIcon(icon);
 		builder.setContentIntent(pendingIntent);
+		builder.setAutoCancel(true);
+		builder.setLights(Color.GREEN, 300, 1000);
 
 		Uri alarmSound = RingtoneManager.getDefaultUri(RingtoneManager.TYPE_NOTIFICATION);
 		builder.setSound(alarmSound);
@@ -150,8 +152,8 @@ public class DashViewerService extends BackgroundService {
 		}
 
 		notification.defaults = 0;
-		notification.flags |= Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL |  Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
-		notification.ledARGB = Color.argb(255, 0, 255, 0);
+		notification.flags = Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL |  Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
+		notification.ledARGB = Color.GREEN;
 		notification.ledOnMS = 300;
 		notification.ledOffMS = 1000;
 
