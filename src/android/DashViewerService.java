@@ -12,6 +12,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
+import android.graphics.Color;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.preference.PreferenceManager;
@@ -148,9 +149,9 @@ public class DashViewerService extends BackgroundService {
 			notification = buildForegroundNotificationCompat(builder);
 		}
 
-		notification.defaults |= Notification.DEFAULT_LIGHTS | Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
+		notification.defaults |= Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
 		notification.flags |= Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL;
-		notification.ledARGB = 0xff00ff00;
+		notification.ledARGB = Color.argb(255, 0, 255, 0);
 		notification.ledOnMS = 300;
 		notification.ledOffMS = 1000;
 
