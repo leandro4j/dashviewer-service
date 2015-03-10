@@ -151,8 +151,8 @@ public class DashViewerService extends BackgroundService {
 			notification = buildForegroundNotificationCompat(builder);
 		}
 
+		//notification.flags |= Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL;
 		notification.defaults = 0;
-		notification.flags |= Notification.FLAG_SHOW_LIGHTS | Notification.FLAG_AUTO_CANCEL |  Notification.DEFAULT_VIBRATE | Notification.DEFAULT_SOUND;
 		notification.ledARGB = Color.argb(255, 0, 255, 0);
 		notification.ledOnMS = 300;
 		notification.ledOffMS = 1000;
