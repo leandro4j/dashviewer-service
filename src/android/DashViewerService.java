@@ -118,12 +118,12 @@ public class DashViewerService extends BackgroundService {
 
 		PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, main, PendingIntent.FLAG_UPDATE_CURRENT);
 
-		int icon = R.drawable.star_big_on;
-		int normalIcon = getResources().getIdentifier("ic_notification", "drawable", getPackageName());
+		int icon = R.drawable.stat_notify_chat;
+		/*int normalIcon = getResources().getIdentifier("ic_notification", "drawable", getPackageName());
 
 		if (normalIcon != 0) {
 			icon = normalIcon;
-		}
+		}*/
 
 		Notification.Builder builder = new Notification.Builder(this);
 		
