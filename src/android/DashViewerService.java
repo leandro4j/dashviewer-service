@@ -119,7 +119,7 @@ public class DashViewerService extends BackgroundService {
 		PendingIntent pendingIntent = PendingIntent.getActivity(getApplicationContext(), 0, main, PendingIntent.FLAG_UPDATE_CURRENT);
 
 		int icon = R.drawable.star_big_on;
-		int normalIcon = getResources().getIdentifier("icon", "drawable", getPackageName());
+		int normalIcon = getResources().getIdentifier("ic_notification", "drawable", getPackageName());
 
 		if (normalIcon != 0) {
 			icon = normalIcon;
